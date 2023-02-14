@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Définition du jeu de caractères -->
+    <meta charset="UTF-8" />
+    <!-- Titre de l'onglet -->
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <!-- Lien vers l'icône de l'onglet -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/icons/favicon.ico.png"
+    />
+    <!-- Configuration de la vue -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Pré-connexion aux ressources Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Lien vers les polices Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Importation de la police Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/f266b52627.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Description du site -->
+    <meta name="description" content="" />
+    <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body>
+    <div id="modifer"></div>
+    <!-- PAGE MODALE -->
+
+    <!-- Une page modale est une fenêtre contextuelle qui apparaît pour afficher du contenu supplémentaire sans quitter la page en cours d'affichage -->
+    <aside id="modal" class="modal" aria-hidden="true" style="display: none">
+      <!-- Un trigger de modale est un élément qui déclenche l'affichage de la page modale -->
+      <div class="modal_trigger"></div>
+      <div class="modal_container js_modal_stop">
+        <!-- Le bouton de fermeture de la modale permet à l'utilisateur de fermer la fenêtre modale en cliquant sur ce bouton -->
+        <button id="model_fermer">x</button>
+        <section class="model_body">
+          <i class="fa-solid fa-arrows-up-down-left-right"></i>
+          <h2 class="model_titre">Galerie photo</h2>
+          <div id="model_gallery"></div>
+          <div class="btn">
+            <!-- Le bouton d'ajout de photo permet à l'utilisateur d'ajouter une photo à la galerie -->
+            <button id="model_ajoute" class="model_ajoute">
+              Ajouter une photo
+            </button>
+            <!-- Le bouton de suppression de la galerie permet à l'utilisateur de supprimer la galerie entière -->
+            <button class="model_suprimer">Supprimer la galerie</button>
+          </div>
+        </section>
+      </div>
+    </aside>
+    <!-- PAGE MODALE AJOUT DE PHOTO -->
+    <form
+      name="form_ajout"
+      method="post"
+      action="#"
+      id="modal_ajout"
+      class="modal"
+      aria-hidden="true"
+      style="display: none"
+      enctype="multipart/form-data"
+    >
+      <!-- Déclencheur de la modale -->
+      <div class="modal_trigger"></div>
+      <!-- Conteneur principal de la modale -->
+      <div class="modal_container js_modal_stop">
+        <!-- Bouton de fermeture de la modale -->
+        <button id="model_fermer_ajouter">x</button>
+        <!-- Bouton de navigation à gauche -->
+        <i id="left" class="fa-sharp fa-solid fa-arrow-left"></i>
+        <!-- Corps de la modale -->
+        <section class="model_body">
+          <!-- Titre de la modale -->
+          <h2 class="model_titre">Ajout photo</h2>
+          <!-- Conteneur de la galerie de photos -->
+          <div id="model_gallery_ajout">
+            <!-- Conteneur de l'ajout de photo -->
+            <div class="model_ajout">
+              <!-- Conteneur de l'affichage de l'image téléchargée -->
+              <div id="image_telecharger_images" style="display: none">
+                <div id="image_telecharger"></div>
+              </div>
+              <!-- Conteneur principal de l'ajout de photo -->
+              <div id="model_ajout_container" style="display: contents">
+                <!-- Image de démo -->
+                <img
+                  class="photo"
+                  src="./assets/images/photo.PNG"
+                  alt="image"
+                />
+                <!-- Champ de sélection de fichier pour l'image -->
+                <input
+                  name="image"
+                  type="file"
+                  id="img_input"
+                  accept="image/png , image/jpg  "
+                  class="input_img_btn"
+                />
+                <!-- Bouton d'ajout de photo -->
+                <button id="ajout" class="model_ajoute ajout">
+                  + Ajouter photo
+                </button>
+                <!-- Information sur le format de fichier accepté -->
+                <p>jpg, png : 4mo max</p>
+              </div>
+            </div>
+            <!-- Message d'erreur pour l'ajout de photo -->
+            <label id="msg_err"></label>
+            <!-- Champ de saisie pour le titre de la photo -->
+            <div class="input_modal_ajout">
+              <label>Titre</label>
+              <input name="title" id="input_model" class="input_model" />
+            </div>
+            <!-- Champ de sélection pour la catégorie -->
+            <div class="input_modal_ajout">
+              <!-- Label pour le champ "Catégorie" -->
+              <label>Catégorie</label>
+              <!-- Liste déroulante pour sélectionner la catégorie -->
+              <select
+                name="category"
+                id="categorie"
+                class="input_modal_ajout_choix"
+              >
+                <!-- Options pour les catégories -->
+                <option value="Objets">Objets</option>
+                <option value="Appartements">Appartements</option>
+                <option value="Hotels & restaurants">
+                  Hotels & restaurants
+                </option>
+              </select>
+            </div>
+            <!-- Fin de la section des champs de saisie -->
+          </div>
+          <!-- Bouton de validation -->
+          <div class="modal_ajout_valider">
+            <button type="submit" id="btn_valider" class="model_ajoute valider">
+              Valider
+            </button>
+          </div>
+          <!-- Fin de la section du bouton de validation -->
+        </section>
+        <!-- Fin de la section du formulaire -->
+      </div>
+      <!-- Fin du modal -->
+    </form>
+    <!-- HEADER + NAV  -->
+    <!-- Section d'en-tête contenant l'en-tête et la navigation -->
+    <header>
+      <!-- En-tête principale avec le nom de l'architecte d'intérieur -->
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <!-- Section de navigation avec des liens vers différentes pages -->
+      <nav>
+        <ul>
+          <!-- Lien vers la section du portfolio -->
+          <li><a href="#portfolio_titre">projets</a></li>
+          <!-- Lien vers la section de contact -->
+          <li><a href="#contact">contact</a></li>
+          <!-- Lien vers la page de connexion -->
+          <li><a id="login" href="./assets/pages/logIn.html">connexion</a></li>
+          <!-- Icône Instagram -->
+          <li><i class="fa-brands fa-instagram"></i></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!--  INTRODUCTION // PRESENTATION -->
+      <!-- Début de la section d'introduction -->
+      <div id="introduction">
+        <!-- Début de la figure contenant la photo -->
+        <figure id="introduction_photo">
+          <!-- Image de présentation -->
+          <img
+            src="./assets/images/sophie-bluel.png"
+            alt="poto de sophie-bluel "
+          />
+        </figure>
+        <!-- Fin de la figure contenant la photo -->
+        <!-- Début de l'article de présentation -->
+        <article id="introduction_article">
+          <!-- Titre de la présentation -->
+          <h2>Designer d'espace</h2>
+          <!-- Début de la section de paragraphes -->
+          <div class="paragraphe">
+            <!-- Premier paragraphe -->
+            <p>
+              Je raconte votre histoire, je valorise vos idées. Je vous
+              accompagne de la conception à la livraison finale du chantier.
+            </p>
+            <!-- Deuxième paragraphe -->
+            <p>
+              Chaque projet sera étudié en commun, de façon à mettre en valeur
+              les volumes, les matières et les couleurs dans le respect de
+              l’esprit des lieux et le choix adapté des matériaux. Le suivi du
+              chantier sera assuré dans le souci du détail, le respect du
+              planning et du budget.
+            </p>
+            <!-- Troisième paragraphe -->
+            <p>
+              En cas de besoin, une équipe pluridisciplinaire peut-être
+              constituée : architecte DPLG, décorateur(trice)
+            </p>
+          </div>
+          <!-- Fin de la section de paragraphes -->
+        </article>
+        <!-- Fin de l'article de présentation -->
+      </div>
+      <!--  PORTFOLIO VIA API -->
+      <section id="portfolio">
+        <div id="portfolio_modifier">
+          <h2 id="portfolio_titre">Mes Projets</h2>
+        </div>
+        <div id="btn">
+          <button id="btn_tous">Tous</button>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </section>
+      <!-- FORMULAIRE DE CONTACT -->
+      <!-- La section de contact permet à l'utilisateur de contacter le propriétaire du site en remplissant un formulaire -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <!-- Cette phrase invite l'utilisateur à discuter de ses projets avec le propriétaire du site -->
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+          <!-- Le champ de saisie du nom permet à l'utilisateur de saisir son nom pour être utilisé dans le formulaire de contact -->
+          <label for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <!-- Le champ de saisie de l'email permet à l'utilisateur de saisir son adresse email pour être utilisée dans le formulaire de contact -->
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <!-- Le champ de saisie du message permet à l'utilisateur de saisir le message qu'il souhaite envoyer dans le formulaire de contact -->
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <!-- Le bouton d'envoi du formulaire permet à l'utilisateur d'envoyer le formulaire de contact une fois qu'il a rempli tous les champs requis -->
+          <input type="submit" value="Envoyer" />
+        </form>
+      </section>
+    </main>
+    <!-- FOOTER -->
+    <!-- Le footer est la partie en bas de la page qui contient des informations telles que les mentions légales, les liens vers les réseaux sociaux, etc. -->
+    <footer>
+      <nav>
+        <ul>
+          <!-- Le lien vers les mentions légales permet à l'utilisateur de consulter les mentions légales du site -->
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+      <!-- Fin du footer -->
+    </footer>
+    <!-- Chargement du fichier JavaScript pour la page d'index -->
+    <script src="./assets/javaScript/index.js"></script>
+    <!-- Fin du corps de la page -->
+  </body>
+  <!-- Fin de la page HTML -->
+</html>
